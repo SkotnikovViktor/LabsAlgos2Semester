@@ -2,12 +2,16 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define SIZE_2000 2000
+#define SIZE_2000000 2000000
 
 
 int binary_search(int *massive, int left, int right, int find_element){
 
-    int medium = left + (right - left);
+    if (left > right){
+        return -1;
+    }
+
+    int medium = left + (right - left) / 2;
 
     if (massive[medium] == find_element){
         return medium + 1; // Возвращается номер элемента 
@@ -25,17 +29,25 @@ int binary_search(int *massive, int left, int right, int find_element){
 
 
 int main(void){
-    int massive_2000[SIZE_2000];
-    
+    struct timespec start, end;
+    double elapsed;
 
-    massive_2000[SIZE_2000 - 1] = 999;
+    int *massive_2000000 = (int*)malloc(SIZE_2000000 * sizeof(int));
+
+
+    massive_2000000[SIZE_2000000 - 1] = 999;
 
     int j = 0;
-    for (int i = 0; i < SIZE_2000 - 1; i++){
-        massive_2000[i] = j++;
+    for (int i = 0; i < SIZE_2000000 - 1; i++){
+        massive_2000000[i] = j++;
     }
 
-    printf("%d", binary_search(massive_2000,0,SIZE_2000-1,999));
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    int result = binary_search(massive_2000000,0,SIZE_2000000-1,999);
+    clock_gettime(CLOCK_MONOTONIC, &end);
 
+    elapsed = (end.tv_sec - start.tv_sec) + 
+              (end.tv_nsec - start.tv_nsec) / 1000000000.0;
+    printf("Time -> %.9f second\n", elapsed);
 
 }

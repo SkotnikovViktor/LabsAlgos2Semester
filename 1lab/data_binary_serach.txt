@@ -1,0 +1,2 @@
+0.000002900 with recursion
+0.000000600 not recursion
