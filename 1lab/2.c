@@ -47,6 +47,7 @@ int main(void){
     
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
     
+    printf("Result -> %d\n",result);
     printf("Time -> %f second\n", cpu_time_used);
 
 

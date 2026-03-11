@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define SIZE_2000000 2000000  // Увеличили до 2 миллионов
+#define SIZE_2000000 2000000 
 
 int line_search(int *massive, int fine_element, int size){
     for (int i = 0; i < size; i++){
@@ -31,6 +31,7 @@ int main(void){
     
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;  
 
+    printf("Result -> %d\n", result);
     printf("Time ->  %f second\n", cpu_time_used);
 
     

@@ -48,6 +48,8 @@ int main(void){
 
     elapsed = (end.tv_sec - start.tv_sec) + 
               (end.tv_nsec - start.tv_nsec) / 1000000000.0;
+
+    printf("Result -> %d\n", result);
     printf("Time -> %.9f second\n", elapsed);
 
 }
