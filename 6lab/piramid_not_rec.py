@@ -1,36 +1,35 @@
-def heapif(massive, n, i):
-    larg = i # Корень дерева 
-    left = 2 * i + 1 # Образвание левого дочернего поддерева 
-    right = 2 * i + 2 # Образование правого дочернего поддерва
+def heapify_iterative(arr: list, n: int, i: int) -> None:
+    while True:
+        largest = i
+        left = 2 * i + 1
+        right = 2 * i + 2
 
-    if left < n and massive[i] < massive[left]:
-        larg = left
-    
-    if right < n and massive[larg] < massive[right]:
-        larg = right
-    
+        # Находим наибольший среди родителя и его детей
+        if left < n and arr[left] > arr[largest]:
+            largest = left
+        if right < n and arr[right] > arr[largest]:
+            largest = right
 
-    if larg != i:
-        massive[i], massive[larg] = massive[larg],massive[i]
-    
-        heapif(massive, n, larg)
+        # Если наибольший не родитель → меняем местами и продолжаем спуск
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i]
+            i = largest  # ← заменяем рекурсивный вызов: переходим к новому узлу
+        else:
+            break  # Свойство кучи выполнено или достигнут лист
 
 
-def sorting(massive):
-    n = len(massive)
+def heap_sort(arr: list) -> list:
+    n = len(arr)
 
-    for i in range(n, -1, -1):
-        heapif(massive, n, i)
-    
+    # 1. Построение max-кучи
+    for i in range(n // 2 - 1, -1, -1):
+        heapify_iterative(arr, n, i)
+
+    # 2. Извлечение элементов из кучи
     for i in range(n - 1, 0, -1):
-        massive[i], massive[0] = massive[0], massive[i]
-        heapif(massive, i, 0)
+        arr[i], arr[0] = arr[0], arr[i]  
+        heapify_iterative(arr, i, 0)         
 
+    return arr
 
-massive = [9,8,7,6,5,4,3,2,1]
-sorted(massive)
-print(massive)
-
-
-    
 
