@@ -1,4 +1,7 @@
-def heapify(arr: list, n: int, i: int) -> None:
+import time
+import random
+
+def heapify(arr: list, n, i):
 
     largest = i          # Изначально считаем корень наибольшим
     left = 2 * i + 1     # Левый потомок
@@ -19,7 +22,7 @@ def heapify(arr: list, n: int, i: int) -> None:
         heapify(arr, n, largest)
 
 
-def heap_sort(arr: list) -> list:
+def heap_sort(arr):
 
     n = len(arr)
 
@@ -37,5 +40,12 @@ def heap_sort(arr: list) -> list:
 
     return arr
 
+n = [1000,2000,3000,4000,5000]
 
-print(heap_sort([9,8,7,6,5,4,3]))
+start = time.time()
+result = heap_sort([random.randint(0,5000) for  x in range(n[4])])
+end = time.time()
+
+
+
+print(f"Результат - {result}\nВремя выполнения - {end - start}")

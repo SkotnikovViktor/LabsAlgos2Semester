@@ -1,3 +1,6 @@
+import time
+import random
+
 def heapify_iterative(arr: list, n: int, i: int) -> None:
     while True:
         largest = i
@@ -33,3 +36,12 @@ def heap_sort(arr: list) -> list:
     return arr
 
 
+n = [1000,2000,3000,4000,5000]
+
+start = time.time()
+result = heap_sort([random.randint(0,5000) for  x in range(n[4])])
+end = time.time()
+
+
+
+print(f"Результат - {result}\nВремя выполнения - {end - start}")
