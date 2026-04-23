@@ -7,28 +7,28 @@ def heapify_iterative(arr: list, n: int, i: int) -> None:
         left = 2 * i + 1
         right = 2 * i + 2
 
-        # Находим наибольший среди родителя и его детей
+
         if left < n and arr[left] > arr[largest]:
             largest = left
         if right < n and arr[right] > arr[largest]:
             largest = right
 
-        # Если наибольший не родитель → меняем местами и продолжаем спуск
+   
         if largest != i:
             arr[i], arr[largest] = arr[largest], arr[i]
-            i = largest  # ← заменяем рекурсивный вызов: переходим к новому узлу
+            i = largest  
         else:
-            break  # Свойство кучи выполнено или достигнут лист
+            break  
 
 
 def heap_sort(arr: list) -> list:
     n = len(arr)
 
-    # 1. Построение max-кучи
+
     for i in range(n // 2 - 1, -1, -1):
         heapify_iterative(arr, n, i)
 
-    # 2. Извлечение элементов из кучи
+
     for i in range(n - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]  
         heapify_iterative(arr, i, 0)         
